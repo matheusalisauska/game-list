@@ -1,6 +1,8 @@
 import '@/styles/globals.css';
 import { Poppins } from 'next/font/google';
 import type { Metadata } from 'next';
+import { Header } from '@/components/header';
+import { FooterMobile } from '@/components/footer-mobile';
 
 const poppins = Poppins({
     weight: ['400', '500', '600', '700'],
@@ -23,23 +25,12 @@ export default function RootLayout({
 }) {
     return (
         <html lang='pt-BR' className={poppins.className}>
-            <head>
-                <link rel='icon' href='/favicon.ico' sizes='any' />
-                <link rel='manifest' href='/manifest.json' />
-                <meta
-                    name='apple-mobile-web-app-status-bar-style'
-                    content='black-translucent'
-                />
-                <meta
-                    name='viewport'
-                    content='initial-scale=1, viewport-fit=cover'
-                />
-                <meta property='og:image' content='<generated>' />
-                <meta property='og:image:type' content='<generated>' />
-                <meta property='og:image:width' content='<generated>' />
-                <meta property='og:image:height' content='<generated>' />
-            </head>
-            <body className='bg-[#000] text-white'>{children}</body>
+            <head></head>
+            <body className='w-full bg-[#000] text-white '>
+                <Header />
+                {children}
+                <FooterMobile />
+            </body>
         </html>
     );
 }
