@@ -5,7 +5,7 @@ export type Game = {
     id: string;
     name: string;
     platform: Platform;
-    imageUrl: string;
+    steamGameId: number;
     finished: boolean;
     createdAt: Date;
     updatedAt: Date;
