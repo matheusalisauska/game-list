@@ -1,12 +1,9 @@
-import { GameCard } from '@/components/game-card';
-import { SectionWrapper } from '@/components/section-wrapper';
+import { GameList } from '@/components/game-list';
 import { AddGameModal } from '@/components/modal/add-game';
-import prismadb from '@/lib/prisadb';
-import { Game } from '@/types';
-import { Suspense } from 'react';
-export default async function Page() {
-    const games: Game[] = await prismadb.games.findMany();
 
+export const fetchCache = 'only-no-store';
+
+export default async function Page() {
     return (
         <main className='flex flex-col mt-6 px-6 lg:px-8 2xl:px-32 pb-32 w-full'>
             <div className='flex gap-2 items-center'>
@@ -15,16 +12,7 @@ export default async function Page() {
                 </h1>
                 <AddGameModal />
             </div>
-            <SectionWrapper>
-                {games.map((game) => (
-                    <GameCard
-                        name={game.name}
-                        image={game.imageUrl}
-                        platform={game.platform}
-                        finished={game.finished}
-                    />
-                ))}
-            </SectionWrapper>
+            <GameList />
             <div className='flex gap-2 items-center mt-12'>
                 <h2 className='text-xl 2xl:text-2xl font-normal'>
                     Favorite Games
