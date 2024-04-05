@@ -1,6 +1,6 @@
 import { GameRating } from '@/components/game-rating';
 import { PlatformTag } from '@/components/platform-tag';
-import prismadb from '@/lib/prisadb';
+import prismadb from '@/lib/prisma';
 import { Game } from '@/types';
 import { Check } from 'lucide-react';
 import Image from 'next/image';
@@ -21,12 +21,14 @@ export default async function GameView({ params }: { params: { id: string } }) {
             method: 'GET',
         }
     ).then((res) => res.json());
-
+        console.log(data)
     const steamInfo = data[game?.steamGameId!].data;
 
     if (!game) {
         return <div>Jogo não encontrado</div>;
     }
+
+    console.log(game)
 
     return (
         <main className='flex flex-col mt-6 px-6 lg:px-8 2xl:px-32 pb-32 w-full'>
@@ -62,7 +64,7 @@ export default async function GameView({ params }: { params: { id: string } }) {
                         </div>
                     )}
                 </div>
-                <GameRating />
+                <GameRating rating={game.rating} />
                 <p>{steamInfo.short_description}</p>
             </section>
         </main>
